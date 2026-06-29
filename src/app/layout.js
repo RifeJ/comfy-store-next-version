@@ -1,5 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import Providers from "./provider";
+import Header from "./components/Header";
+import NavLinks from "./components/NavLinks";
+import AdminFab from "./components/AdminFab";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +26,28 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    `,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <Providers>
+          <AdminFab />
+          <Header />
+          <NavLinks />
+          {children}
+          <ToastContainer position="top-center" />
+        </Providers>
+      </body>
     </html>
   );
 }
