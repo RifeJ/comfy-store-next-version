@@ -11,7 +11,7 @@ export default function ServerErrorBlock() {
         Server issues [500]
       </h1>
       <button
-        onClick={() => router.refresh()}
+        onClick={() => window.location.reload()}
         className="btn btn-primary btn-md">
         Try Again
       </button>

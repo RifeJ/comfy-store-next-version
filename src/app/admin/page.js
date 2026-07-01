@@ -42,8 +42,8 @@ const Typewriter = ({ text, speed = 100 }) => {
 
 const AdminDashboard = () => {
   const [items, setItems] = useState([]);
-  const [terminatingId, setTerminatingId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const fetchItems = async () => {
     try {
@@ -56,6 +56,20 @@ const AdminDashboard = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const user = JSON.parse(storedUser);
+        if (user.role === "admin") {
+          setIsAdmin(true);
+        }
+      } catch (error) {
+        console.error("Error parsing user for AdminFab:", error);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     fetchItems();
@@ -95,7 +109,7 @@ const AdminDashboard = () => {
           : newProduct.colors,
     };
 
-    const key = import.meta.env.VITE_ADMIN_KEY;
+    const key = process.env.NEXT_PUBLIC_API_URL;
 
     try {
       const response = await fetch("http://localhost:5000/api/products", {
@@ -170,22 +184,6 @@ const AdminDashboard = () => {
         &gt; CONNECTING_TO_CORE_DATABASE...
       </div>
     );
-
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      try {
-        const user = JSON.parse(storedUser);
-        if (user.role === "admin") {
-          setIsAdmin(true);
-        }
-      } catch (error) {
-        console.error("Error parsing user for AdminFab:", error);
-      }
-    }
-  }, []);
 
   if (!isAdmin) return null;
 

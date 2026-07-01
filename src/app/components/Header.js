@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
+import { WiStars } from "react-icons/wi";
 
 export default function Header() {
   const router = useRouter();
@@ -35,31 +37,37 @@ export default function Header() {
 
   return (
     <div className="bg-neutral text-neutral-content">
-      <div className="flex gap-x-6 justify-end items-center py-2 px-8 mx-auto max-w-6xl min-h-10">
+      <div className="flex gap-x-5 justify-between items-center px-6   min-h-10 text-primary">
+        <p className="text-[12px]/[20px] flex justify-center items-center">
+          <WiStars size={30} fill="orange" />
+          Premium Handcrafted Furniture • Free Worldwide Shipping
+        </p>
         {isMounted &&
           (user ? (
-            <>
-              <p className="text-[14px]/[20px]">Hello, {user.username}</p>
+            <div className="flex justify-center items-center gap-3">
+              <p className="text-[12px]/[20px]">Hello, {user.username}</p>
+              <div className="h-3 w-px bg-primary"></div>
               <button
                 onClick={handleLogout}
-                className="text-[14px]/[20px] hover:underline cursor-pointer">
+                className="text-[12px]/[20px] hover:underline cursor-pointer flex justify-center items-center gap-2">
                 Log out
+                <FaArrowRightFromBracket />
               </button>
-            </>
+            </div>
           ) : (
-            <>
+            <div className="flex gap-3">
               <Link
                 href="/login"
-                className="text-[14px]/[20px] hover:underline cursor-pointer">
+                className="text-[12px]/[20px] hover:underline cursor-pointer">
                 Sign in / Guest
               </Link>
-
+              <div className="h-3 w-px bg-primary"></div>
               <Link
                 href="/register"
-                className="text-[14px]/[20px] hover:underline cursor-pointer">
+                className="text-[12px]/[20px] hover:underline cursor-pointer">
                 Create Account
               </Link>
-            </>
+            </div>
           ))}
       </div>
     </div>

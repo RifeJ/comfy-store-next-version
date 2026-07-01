@@ -29,7 +29,6 @@ function ProductsDetail() {
   const [amount, setAmount] = useState(1);
   const [color, setColor] = useState("");
 
-  // 3. Effect Hook
   useEffect(() => {
     if (data?.colors?.length > 0) {
       setColor(data.colors[0]);
@@ -131,7 +130,7 @@ function ProductsDetail() {
               <h4 className="text-sm font-bold tracking-wider capitalize mb-3 text-neutral-content">
                 Colors
               </h4>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-5">
                 {colors.map((c) => (
                   <button
                     key={c}
@@ -168,7 +167,7 @@ function ProductsDetail() {
 
           <div className="mt-4">
             <button
-              className="w-full md:w-auto px-8 py-3 bg-primary text-[#dbd4ed] rounded-lg font-bold uppercase tracking-wide shadow-md hover:bg-primary/85 transition-all active:scale-95"
+              className="w-full md:w-auto px-8 py-3 bg-primary text-[#dbd4ed] rounded-lg font-bold uppercase tracking-wide shadow-md hover:bg-primary/85 transition-all active:scale-95 cursor-pointer"
               onClick={handleAddToCart}>
               Add to Bag
             </button>

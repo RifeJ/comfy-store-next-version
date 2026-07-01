@@ -17,13 +17,13 @@ const navigationLinks = [
 export default function NavLinks() {
   const pathname = usePathname();
 
-  const [theme, setTheme] = useState("winter");
+  const [theme, setTheme] = useState("layt");
   const [user, setUser] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   const changeTheme = () => {
-    const nextTheme = theme === "winter" ? "dracula" : "winter";
+    const nextTheme = theme === "layt" ? "bleck" : "layt";
     setTheme(nextTheme);
     document.documentElement.setAttribute("data-theme", nextTheme);
     localStorage.setItem("theme", nextTheme);
@@ -32,7 +32,7 @@ export default function NavLinks() {
   useEffect(() => {
     setIsMounted(true);
 
-    const storedTheme = localStorage.getItem("theme") || "winter";
+    const storedTheme = localStorage.getItem("theme") || "layt";
     setTheme(storedTheme);
     document.documentElement.setAttribute("data-theme", storedTheme);
 
@@ -55,14 +55,20 @@ export default function NavLinks() {
   }, []);
 
   return (
-    <div className="bg-base-200">
-      <div className="mx-auto! max-w-6xl px-8! py-2! flex justify-between items-center min-h-16 w-full">
-        <div className="bg-primary hover:brightness-88 duration-300 ease-in border-[0.8px] border-solid border-primary rounded-lg px-4! nav-links-logo cursor-pointer max-lg:hidden">
-          <Link href="/">
-            <span className="uppercase text-[#dbe1ff] text-3xl leading-[46.4px] font-bold">
-              C
-            </span>
-          </Link>
+    <div className="bg-base-100 border-secondary border sticky top-0 z-999">
+      <div className="mx-auto! max-w-7xl px-8! py-5 flex justify-between items-center min-h-16 w-full">
+        <div className="flex justify-center items-center gap-2.5 max-lg:hidden">
+          <div className="bg-primary hover:brightness-88 duration-300 ease-in border-[0.8px] border-solid border-primary rounded-xl size-10 text-center nav-links-logo cursor-pointer ">
+            <Link href="/">
+              <span className=" text-primary-content text-2xl font-black">
+                c
+              </span>
+            </Link>
+          </div>
+          <div>
+            <h1 className="font-bold text-sm">ComfyStore</h1>
+            <p className="text-[12px]">Design Studio</p>
+          </div>
         </div>
 
         <button
@@ -77,7 +83,7 @@ export default function NavLinks() {
         </button>
 
         <div>
-          <ul className="hidden lg:flex space-x-2">
+          <ul className="hidden lg:flex space-x-2 bg-accent p-1 rounded-xl">
             {navigationLinks.map((link) => {
               const isActive = pathname === link.href;
 
@@ -119,7 +125,7 @@ export default function NavLinks() {
               aria-label="Toggle theme"
               onClick={changeTheme}>
               {isMounted &&
-                (theme === "winter" ? (
+                (theme === "layt" ? (
                   <FaMoon size={20} />
                 ) : (
                   <IoSunny size={20} />

@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import "swiper/css";
+import "swiper/css/autoplay";
 import Providers from "./provider";
 import Header from "./components/Header";
 import NavLinks from "./components/NavLinks";
@@ -28,7 +30,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <head>
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `
       (function() {
@@ -37,13 +39,13 @@ export default function RootLayout({ children }) {
       })();
     `,
           }}
-        />
+        /> */}
       </head>
       <body className="min-h-full flex flex-col">
         <Providers>
           <AdminFab />
           <Header />
-          <NavLinks />
+          <NavLinks className="sticky" />
           {children}
           <ToastContainer position="top-center" />
         </Providers>

@@ -1,6 +1,85 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
-  themes: all;
+  themes: layt, bleck;
+}
+
+@plugin "daisyui/theme" {
+  name: "layt";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: oklch(99% 0.002 240);
+  --color-base-200: oklch(98% 0.004 240);
+  --color-base-300: oklch(92% 0.01 240);
+  --color-base-content: oklch(21% 0.03 257);
+
+  --color-primary: oklch(21% 0.03 257);
+  --color-primary-content: oklch(100% 0 0);
+
+  --color-secondary: oklch(97% 0.006 248);
+  --color-secondary-content: oklch(37% 0.03 259);
+
+  --color-accent: oklch(88% 0.006 247);
+  --color-accent-content: oklch(21% 0.03 257);
+
+  --color-neutral: oklch(88% 0.006 247);
+  --color-neutral-content: oklch(21% 0.03 257);
+
+  --color-info: oklch(70% 0.12 240);
+  --color-info-content: oklch(99% 0.002 240);
+
+  --color-success: oklch(62% 0.17 150);
+  --color-success-content: oklch(99% 0.002 150);
+
+  --color-warning: oklch(58% 0.15 60);
+  --color-warning-content: oklch(99% 0.002 60);
+
+  --color-error: oklch(64% 0.21 25);
+  --color-error-content: oklch(99% 0.002 25);
+
+  --card-color: oklch(100% 0 0);
+}
+
+@plugin "daisyui/theme" {
+  name: "bleck";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: oklch(18% 0.02 255);
+  --color-base-200: oklch(22% 0.02 255);
+  --color-base-300: oklch(28% 0.02 255);
+  --color-base-content: oklch(97% 0.01 255);
+
+  --color-primary: oklch(100% 0 82);
+  --color-primary-content: oklch(22% 0.02 255);
+
+  --color-secondary: oklch(32% 0.02 255);
+  --color-secondary-content: oklch(97% 0.01 255);
+
+  --color-accent: oklch(7% 0.15 82);
+  --color-accent-content: oklch(22% 0.02 255);
+
+  --color-neutral: oklch(32% 0.02 255);
+  --color-neutral-content: oklch(97% 0.01 255);
+
+  --color-info: oklch(70% 0.12 240);
+  --color-info-content: oklch(22% 0.02 255);
+
+  --color-success: oklch(65% 0.16 150);
+  --color-success-content: oklch(22% 0.02 255);
+
+  --color-warning: oklch(78% 0.16 82);
+  --color-warning-content: oklch(22% 0.02 255);
+
+  --color-error: oklch(70% 0.19 25);
+  --color-error-content: oklch(22% 0.02 255);
+
+  --card-color: oklch(20.8% 0.042 265.755);
+}
+
+@theme {
+  --color-card: var(--card-color);
 }
 
 body {
@@ -8,12 +87,30 @@ body {
 }
 
 .active {
-  background: #021431;
-  border-radius: 8px;
-  color: #fff;
+  background: var(--color-primary);
+  border-radius: 12px;
+  color: var(--color-primary-content);
 }
 
-/* Пульсация столбиков графика */
+.home-photo-1 {
+  background-image: url("https://uxmagic.blob.core.windows.net/public/agent-images/hero-sofa-1782742623466-f9fg5hprukb.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.home-photo-2 {
+  background-image: url("https://uxmagic.blob.core.windows.net/public/agent-images/product-dining-1782742643446-xi4npnyasyk.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.home-photo-3 {
+  background-image: url("https://uxmagic.blob.core.windows.net/public/agent-images/product-lounge-1782742633251-j3iksioehdh.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 @keyframes pulse-bar {
   0% {
     transform: scaleY(0.6);
@@ -25,7 +122,6 @@ body {
   }
 }
 
-/* Эффект рассыпания на пиксели */
 @keyframes pixel-explode {
   0% {
     filter: url(#pixel-dissolve);
@@ -53,6 +149,14 @@ body {
 .nav-links-logo:active {
   transform: scale(0.93);
   animation: button-pop 0.3s ease-out;
+}
+
+.home-button {
+  transition: all 0.3s;
+}
+
+.home-button:hover {
+  transform: translateY(-4px);
 }
 
 @keyframes button-pop {

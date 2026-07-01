@@ -1,5 +1,3 @@
-
-
 import { useForm } from "react-hook-form";
 
 const Filters = ({
@@ -25,23 +23,24 @@ const Filters = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-base-200 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
+      className="bg-base-300 rounded-lg px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
       {/* 1. ПОИСК */}
-      <div className="form-control">
-        <label className="label-text capitalize">search product</label>
+      <div className="">
+        <label className="p-1 font-semibold capitalize">search product</label>
         <input
           {...register("search")}
           type="search"
-          className="input input-bordered input-sm"
+          className="input input-sm rounded-lg"
+          placeholder="Search by name or style"
         />
       </div>
 
       {/* 2. КАТЕГОРИИ */}
       <div className="form-control">
-        <label className="label-text capitalize">select category</label>
+        <label className="p-1 font-semibold capitalize">select category</label>
         <select
           {...register("category")}
-          className="select select-bordered select-sm">
+          className="select select-sm rounded-lg">
           {categories.map((cat) => (
             <option key={cat}>{cat}</option>
           ))}
@@ -50,10 +49,10 @@ const Filters = ({
 
       {/* 3. КОМПАНИИ */}
       <div className="form-control">
-        <label className="label-text capitalize">select company</label>
+        <label className="p-1 font-semibold capitalize">select company</label>
         <select
           {...register("company")}
-          className="select select-bordered select-sm">
+          className="select rounded-lg select-sm">
           {companies.map((com) => (
             <option key={com}>{com}</option>
           ))}
@@ -62,10 +61,8 @@ const Filters = ({
 
       {/* 4. СОРТИРОВКА */}
       <div className="form-control">
-        <label className="label-text capitalize">sort by</label>
-        <select
-          {...register("order")}
-          className="select select-bordered select-sm">
+        <label className="p-1 font-semibold capitalize">sort by</label>
+        <select {...register("order")} className="select select-sm rounded-lg">
           <option value="a-z">a-z</option>
           <option value="z-a">z-a</option>
           <option value="high">high</option>
@@ -74,8 +71,11 @@ const Filters = ({
       </div>
 
       {/* 5. ЦЕНА */}
-      <div className="form-control">
-        <label className="label-text capitalize">select price</label>
+      <div className="">
+        <div className="flex justify-between items-center">
+          <label className="p-1 font-semibold capitalize">select price</label>
+          <p>{}</p>
+        </div>
         <input
           {...register("price")}
           type="range"
@@ -87,26 +87,26 @@ const Filters = ({
       </div>
 
       {/* 6. ДОСТАВКА */}
-      <div className="form-control flex flex-col gap-2 items-center justify-between">
-        <label className="label-text capitalize cursor-pointer">
-          free shipping
-        </label>
+      <div className=" flex gap-2 items-center justify-between bg-primary-content p-1">
+        <label className="font-semibold capitalize">free shipping</label>
         <input
           {...register("shipping")}
           type="checkbox"
-          className="checkbox checkbox-primary checkbox-sm ml-3"
+          className="checkbox checkbox-primary checkbox-sm"
         />
       </div>
 
       {/* КНОПКИ */}
-      <button type="submit" className="btn btn-primary btn-sm">
+      <button type="submit" className="btn btn-primary btn-sm border-none rounded-lg">
         <p className="uppercase text-[14px] font-semibold">search</p>
       </button>
       <button
         type="button"
         onClick={handleReset}
-        className="btn btn-accent btn-sm">
-        <p className="uppercase text-[14px] font-semibold">reset</p>
+        className="btn btn-sm border-none rounded-lg">
+        <p className="uppercase text-[14px] font-semibold text-primary">
+          reset
+        </p>
       </button>
     </form>
   );
