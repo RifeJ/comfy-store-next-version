@@ -36,15 +36,15 @@ export default function Header() {
   };
 
   return (
-    <div className="bg-neutral text-neutral-content">
+    <div className="bg-primary text-neutral-content">
       <div className="flex gap-x-5 justify-between items-center px-6   min-h-10 text-primary">
-        <p className="text-[12px]/[20px] flex justify-center items-center">
+        <p className="text-[12px]/[20px] flex justify-center items-center text-primary-content">
           <WiStars size={30} fill="orange" />
           Premium Handcrafted Furniture • Free Worldwide Shipping
         </p>
         {isMounted &&
           (user ? (
-            <div className="flex justify-center items-center gap-3">
+            <div className="flex justify-center items-center gap-3 text-primary-content">
               <p className="text-[12px]/[20px]">Hello, {user.username}</p>
               <div className="h-3 w-px bg-primary"></div>
               <button
@@ -55,7 +55,7 @@ export default function Header() {
               </button>
             </div>
           ) : (
-            <div className="flex gap-3">
+            <div className="flex gap-3 text-primary-content">
               <Link
                 href="/login"
                 className="text-[12px]/[20px] hover:underline cursor-pointer">

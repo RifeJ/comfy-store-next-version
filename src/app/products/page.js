@@ -7,6 +7,7 @@ import LoadingSpiner from "../components/LoadingSpiner";
 import Filters from "../components/Filters";
 import ProductCard from "../components/ProductCard";
 import { IoMdStar } from "react-icons/io";
+import ServerErrorBlock from "../components/ServerErrorBlock";
 
 const initialFilters = {
   search: "",
@@ -26,7 +27,7 @@ function Products() {
   });
 
   if (isLoading) return <LoadingSpiner />;
-  if (error) return <ServiceWorkerRegistration />;
+  if (error) return <ServerErrorBlock />;
 
   const products = data?.data;
   const meta = data?.meta;
@@ -60,7 +61,7 @@ function Products() {
         <div className=" grid grid-cols-3 gap-4 md:gap-6">
           <div className="bg-card border border-base-300 rounded-2xl shadow-sm px-5 py-4 min-w-32.5">
             <h1 className=" block text-2xl font-heading font-bold text-foreground">
-              240+
+              21
             </h1>
             <p className="text-xs text-muted-foreground uppercase tracking-wider">
               Products
@@ -68,7 +69,7 @@ function Products() {
           </div>
           <div className="bg-card border border-base-300 rounded-2xl shadow-sm px-5 py-4 min-w-32.5">
             <h1 className=" block text-2xl font-heading font-bold text-foreground">
-              18
+              5
             </h1>
             <p className="text-xs text-muted-foreground uppercase tracking-wider">
               Collections

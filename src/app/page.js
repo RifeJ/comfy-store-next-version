@@ -10,6 +10,7 @@ import { FaRegStar, FaPlus } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
+import TestPage from "./components/testpage";
 
 function MainPage() {
   const {
@@ -21,11 +22,18 @@ function MainPage() {
     queryFn: fetchFeaturedProducts,
   });
 
+
+
+  const handleAdd = (id) => {
+    toggleFav(id);
+  };
+
   if (isLoading) return <LoadingSpiner />;
   if (error) return <ServerErrorBlock />;
 
   return (
-    <section className="py-20! px-8! mx-auto! max-w-7xl">
+    <section className="py-20! px-8! mx-auto max-w-7xl">
+      {/* <TestPage /> */}
       <div className="flex items-center max-lg:grid-cols-1">
         <div>
           <h1 className="text-5xl/[64px] font-bold tracking-tight">
@@ -144,7 +152,8 @@ function MainPage() {
           slidesPerView={3}
           spaceBetween={32}>
           {products.map((p) => {
-            const { _id, title, category, description, price, image } = p;
+            const { _id, title, category, description, price, image, reviews } =
+              p;
 
             const dollarsAmount = new Intl.NumberFormat("en-US", {
               style: "currency",
@@ -189,7 +198,7 @@ function MainPage() {
                           <FaRegStar key={index} />
                         ))}
                       <p className="text-xs text-primary ml-1 font-medium">
-                        ({/*reviews_count*/} reviews)
+                        ({reviews.length} reviews)
                       </p>
                     </div>
                     <button className="w-10 h-10 bg-base-300 rounded-xl flex items-center justify-center transition-all">

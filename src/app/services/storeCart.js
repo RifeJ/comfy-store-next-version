@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const storeCart = create(
+export const storeCart = create(
   persist(
     (set) => ({
       cartItems: [],
@@ -49,6 +49,12 @@ const storeCart = create(
           };
         }),
 
+      removeCart: () =>
+        set({
+          cartItems: [],
+          numItemsInCart: 0,
+        }),
+
       editAmount: (cartID, amount) => {
         set((state) => {
           const newCart = state.cartItems.map((item) => {
@@ -71,4 +77,69 @@ const storeCart = create(
   ),
 );
 
-export default storeCart;
+export const storeFavorite = create(
+  persist(
+    (set) => ({
+      favoriteItems: [],
+      numItemsInFavorites: 0,
+
+      toggleFav: (product) =>
+        set((state) => {
+          const productId = product.id || product._id;
+
+          // console.log("=== ТЕСТ TOGGLE ===");
+          // console.log(
+          //   "Ищем продукт с ID:",
+          //   productId,
+          //   "Тип:",
+          //   typeof productId,
+          // );
+          // console.log("Текущий массив избранного:", state.favoriteItems);
+
+          const isEX = state.favoriteItems.some((item) => {
+            const itemId = item.id || item._id;
+            const match = String(itemId) === String(productId);
+            // console.log(
+            //   `Сравниваем элемент в базе (${itemId}) с кликнутым (${productId}) -> Результат:`,
+            //   match,
+            // );
+            return match;
+          });
+
+          let updatedFavorites;
+
+          if (isEX) {
+            console.log("Товар НАЙДЕН! Удаляем его...");
+            updatedFavorites = state.favoriteItems.filter((item) => {
+              const itemId = item.id || item._id;
+              return String(itemId) !== String(productId);
+            });
+          } else {
+            // console.log("Товара НЕТ! Добавляем его...");
+            updatedFavorites = [...state.favoriteItems, product];
+          }
+
+          return {
+            favoriteItems: updatedFavorites,
+            numItemsInFavorites: updatedFavorites.length,
+          };
+        }),
+
+      removeFromFav: (id) =>
+        set((state) => {
+          const updatedFavorites = state.favoriteItems.filter(
+            (item) => item.id !== id,
+          );
+          return {
+            favoriteItems: updatedFavorites,
+            numItemsInFavorites: updatedFavorites.length,
+          };
+        }),
+
+      clearFavorites: () => set({ favoriteItems: [], numItemsInFavorites: 0 }),
+    }),
+    {
+      name: "fav-storage",
+    },
+  ),
+);

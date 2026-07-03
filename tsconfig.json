@@ -26,6 +26,6 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/components/ShareBtn.tsx"  ],
   "exclude": ["node_modules"]
 }

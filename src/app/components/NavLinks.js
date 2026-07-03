@@ -55,7 +55,7 @@ export default function NavLinks() {
   }, []);
 
   return (
-    <div className="bg-base-100 border-secondary border sticky top-0 z-999">
+    <div className="bg-base-100 border-primary/20 border sticky top-0 z-999">
       <div className="mx-auto! max-w-7xl px-8! py-5 flex justify-between items-center min-h-16 w-full">
         <div className="flex justify-center items-center gap-2.5 max-lg:hidden">
           <div className="bg-primary hover:brightness-88 duration-300 ease-in border-[0.8px] border-solid border-primary rounded-xl size-10 text-center nav-links-logo cursor-pointer ">
@@ -83,7 +83,7 @@ export default function NavLinks() {
         </button>
 
         <div>
-          <ul className="hidden lg:flex space-x-2 bg-accent p-1 rounded-xl">
+          <ul className="hidden lg:flex space-x-2 bg-nav/70 shadow-sm p-1.5 rounded-3xl">
             {navigationLinks.map((link) => {
               const isActive = pathname === link.href;
 

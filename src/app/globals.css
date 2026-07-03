@@ -39,6 +39,7 @@
   --color-error-content: oklch(99% 0.002 25);
 
   --card-color: oklch(100% 0 0);
+  --nav-color: #f1f5f9;
 }
 
 @plugin "daisyui/theme" {
@@ -76,10 +77,12 @@
   --color-error-content: oklch(22% 0.02 255);
 
   --card-color: oklch(20.8% 0.042 265.755);
+  --nav-color: oklch(0% 0 0);
 }
 
 @theme {
   --color-card: var(--card-color);
+  --color-nav: var(--nav-color);
 }
 
 body {
@@ -88,7 +91,7 @@ body {
 
 .active {
   background: var(--color-primary);
-  border-radius: 12px;
+  border-radius: 24px;
   color: var(--color-primary-content);
 }
 
