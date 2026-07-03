@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://comfystorebackend-production.up.railway.app/api");
 
 const Typewriter = ({ text, speed = 100 }) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -47,7 +47,9 @@ const AdminDashboard = () => {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/products");
+      const response = await fetch(
+        "https://comfystorebackend-production.up.railway.app/api/products",
+      );
       const result = await response.json();
       setItems(result.data);
       setLoading(false);
@@ -88,11 +90,14 @@ const AdminDashboard = () => {
     title: "",
     price: "",
     category: "",
+    description: "",
     company: "",
     image: "",
+    images: "",
     colors: "",
     featured: false,
     shipping: false,
+    stock: "",
   });
 
   const handleCreate = async (e) => {
@@ -109,21 +114,25 @@ const AdminDashboard = () => {
           : newProduct.colors,
     };
 
-    const key = process.env.NEXT_PUBLIC_API_URL;
+    const key = process.env.ADMIN_KEY; // undefinded
 
     try {
-      const response = await fetch("http://localhost:5000/api/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "admin-key": `${key}`,
+      const response = await fetch(
+        "https://comfystorebackend-production.up.railway.app/api/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "admin-key": `werd`,
+          },
+          body: JSON.stringify(payload),
         },
-        body: JSON.stringify(payload),
-      });
+      );
 
       const result = await response.json();
 
       if (response.ok) {
+        console.log(key);
         setItems((prevItems) => [...prevItems, result.data]);
 
         setNewProduct({
@@ -133,9 +142,11 @@ const AdminDashboard = () => {
           description: "",
           category: "",
           image: "",
+          images: [],
           featured: false,
           shipping: false,
           colors: [],
+          stock: "",
         });
 
         toast.success("SUCCESS: UNIT_SYNCED_WITH_GRID");
@@ -154,18 +165,19 @@ const AdminDashboard = () => {
     );
     if (!isConfirmed === true) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
-        method: "DELETE",
-        headers: {
-          "admin-key": "werd",
+      const response = await fetch(
+        `https://comfystorebackend-production.up.railway.app/api/products/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "admin-key": "werd",
+          },
         },
-      });
+      );
 
       if (response.ok) {
-        setTerminatingId(id);
         setTimeout(() => {
           setItems((prev) => prev.filter((item) => item._id !== id));
-          setTerminatingId(null);
         }, 600);
 
         console.log(`UNIT_${id}: TERMINATED_SUCCESSFULLY`);
@@ -327,13 +339,44 @@ const AdminDashboard = () => {
                     setNewProduct({ ...newProduct, colors: colorsArray });
                   }}
                 />
+                <input
+                  type="text"
+                  placeholder="EXTRA IMAGES_URL"
+                  className="admin-input"
+                  value={newProduct.images}
+                  onChange={(e) => {
+                    const imagesArray = e.target.value
+                      .split(",")
+                      .map((img) => img.trim());
+                    setNewProduct({ ...newProduct, images: imagesArray });
+                  }}
+                />
+                <input
+                  placeholder="STOCK"
+                  className="admin-input w-full"
+                  value={newProduct.stock}
+                  onChange={(e) =>
+                    setNewProduct({ ...newProduct, stock: e.target.value })
+                  }
+                />
+                <textarea
+                  placeholder="DESCRIPTION"
+                  className="admin-input lg:col-span-2"
+                  value={newProduct.description}
+                  onChange={(e) =>
+                    setNewProduct({
+                      ...newProduct,
+                      description: e.target.value,
+                    })
+                  }
+                />
               </div>
 
               <div className="flex gap-10 text-[10px] tracking-widest text-slate-500">
                 <label className="flex items-center gap-2 cursor-pointer hover:text-[#FF69B4]">
                   <input
                     type="checkbox"
-                    value={newProduct.featured}
+                    checked={newProduct.featured}
                     onChange={(e) =>
                       setNewProduct({
                         ...newProduct,
@@ -346,7 +389,7 @@ const AdminDashboard = () => {
                 <label className="flex items-center gap-2 cursor-pointer hover:text-[#FF69B4]">
                   <input
                     type="checkbox"
-                    value={newProduct.shipping}
+                    checked={newProduct.shipping}
                     onChange={(e) =>
                       setNewProduct({
                         ...newProduct,
@@ -372,15 +415,12 @@ const AdminDashboard = () => {
           </div>
 
           <div className="w-full bg-[#111]/80 border border-slate-800 rounded-lg mt-6 text-sm">
-            {/* Шапка таблицы */}
             <div className="grid grid-cols-[15%_45%_20%_20%] border-b border-slate-800 text-slate-500 text-[10px] tracking-widest uppercase bg-black/40 py-4 px-6">
               <div>UID</div>
               <div>Model_Name</div>
               <div>Price_Credits</div>
               <div className="text-right">Action</div>
             </div>
-
-            {/* Строки с данными */}
             <div className="divide-y divide-slate-950">
               {items.map((item) => (
                 <div
