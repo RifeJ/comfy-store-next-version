@@ -29,7 +29,7 @@ export default function Checkout() {
 
   if (!cartItems || cartItems.length === 0) {
     return (
-      <div className="mx-auto max-w-7xl px-8 py-20 border-b border-base-300">
+      <div className="mx-auto w-full max-w-7xl px-8 py-20 border-b border-base-300">
         <h1 className="text-3xl font-medium tracking-wider">
           Your Cart is Empty
         </h1>

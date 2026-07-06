@@ -23,8 +23,6 @@ function Cart() {
     queryFn: fetchAllProducts,
   });
 
-  if (error) return <ServerErrorBlock />;
-
   const cartItems = storeCart((state) => state.cartItems);
   const removeFromCart = storeCart((state) => state.removeFromCart);
   const editAmount = storeCart((state) => state.editAmount);
@@ -47,6 +45,8 @@ function Cart() {
     }
   }, []);
 
+  if (error) return <ServerErrorBlock />;
+
   const items = isMounted ? cartItems : [];
 
   const handleRemove = (id) => {
@@ -66,7 +66,7 @@ function Cart() {
 
   if (!items || items.length === 0) {
     return (
-      <div className="mx-auto max-w-7xl px-8 py-20 border-b border-base-300">
+      <div className="mx-auto w-full max-w-7xl px-8 py-20 border-b border-base-300">
         <h1 className="text-3xl font-medium tracking-wider">
           Your Cart is Empty
         </h1>

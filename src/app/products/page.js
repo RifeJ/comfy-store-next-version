@@ -42,7 +42,7 @@ function Products() {
   };
 
   return (
-    <section className="py-20 px-8 mx-auto max-w-7xl">
+    <section className="py-20 px-8 mx-auto max-w-7xl w-full">
       <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 border-b border-base-300 pb-8 mb-8">
         <div className="flex flex-col gap-4 max-w-2xl">
           <div className="inline-flex items-center gap-2 bg-secondary px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide w-fit shadow-sm">
@@ -58,7 +58,7 @@ function Products() {
             shopping experience.
           </p>
         </div>
-        <div className=" grid grid-cols-3 gap-4 md:gap-6">
+        <div className=" grid grid-cols-3 gap-4 md:gap-6 max-[450px]:grid-cols-1">
           <div className="bg-card border border-base-300 rounded-2xl shadow-sm px-5 py-4 min-w-32.5">
             <h1 className=" block text-2xl font-heading font-bold text-foreground">
               21

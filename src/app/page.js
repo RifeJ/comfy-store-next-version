@@ -10,7 +10,6 @@ import { FaRegStar, FaPlus } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
-import TestPage from "./components/testpage";
 
 function MainPage() {
   const {
@@ -22,8 +21,6 @@ function MainPage() {
     queryFn: fetchFeaturedProducts,
   });
 
-
-
   const handleAdd = (id) => {
     toggleFav(id);
   };
@@ -32,9 +29,8 @@ function MainPage() {
   if (error) return <ServerErrorBlock />;
 
   return (
-    <section className="py-20! px-8! mx-auto max-w-7xl">
-      {/* <TestPage /> */}
-      <div className="flex items-center max-lg:grid-cols-1">
+    <section className="py-20 max-xl:py-10 px-8 mx-auto max-w-7xl w-full">
+      <div className="grid grid-cols-2 items-center max-lg:gap-5 max-lg:grid-cols-1">
         <div>
           <h1 className="text-5xl/[64px] font-bold tracking-tight">
             We are changing
@@ -42,7 +38,7 @@ function MainPage() {
           <h1 className="text-5xl/[64px] font-bold tracking-tight">
             the way people shop
           </h1>
-          <p className="mt-6! max-w-125 text-lg leading-8">
+          <p className="mt-6 w-full max-w-125 text-lg leading-8 max-lg:max-w-220">
             Design your dream space with our premium selection of furniture.
             From elegant sofas to handcrafted tables, we offer quality pieces
             that combine style, durability, and unmatched comfort.
@@ -73,10 +69,10 @@ function MainPage() {
             </div>
           </div>
         </div>
-        <div className="flex gap-5">
+        <div className="flex gap-5 max-md:flex-col">
           <Link
-            href={""}
-            className="home-photo-1 w-115 h-105 rounded-2xl p-5 flex flex-col justify-end items-start">
+            href={"/"}
+            className="home-photo-1 max-w-115 h-105 rounded-2xl p-5 flex flex-col justify-end items-start max-xl:max-w-165 max-xl:max-h-120 w-full">
             <p className="text-orange-300 uppercase font-bold">
               featured concept
             </p>
@@ -87,17 +83,17 @@ function MainPage() {
               Featuring our signature bouclé curved sofa & organic oak table
             </p>
           </Link>
-          <div className="flex flex-col gap-5 max-xl:hidden">
+          <div className="flex flex-col gap-5 max-xl:hidden max-lg:flex max-md:flex-row">
             <Link
-              href={""}
-              className="home-photo-2 h-50 w-60 rounded-2xl p-5 flex flex-col justify-end items-start">
+              href={"/"}
+              className="home-photo-2 h-50 w-60 max-lg:w-80 rounded-2xl p-5 flex flex-col justify-end items-start max-lg:h-57">
               <p className="text-white uppercase text-[12px] font-semibold">
                 Dining Collection
               </p>
             </Link>
             <Link
-              href={""}
-              className="home-photo-3 h-50 w-60 rounded-2xl p-5 flex flex-col justify-end items-start">
+              href={"/"}
+              className="home-photo-3 h-50 w-60 max-lg:w-80 rounded-2xl p-5 flex flex-col justify-end items-start max-lg:h-57">
               <p className="text-white uppercase text-[12px] font-semibold">
                 Lounge Accent
               </p>
@@ -114,43 +110,24 @@ function MainPage() {
             featured products
           </h1>
         </div>
-        {/* <div className="pt-12! grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-4">
-          {products.map((product) => {
-            const { _id, title, price, image } = product;
-
-            const dollarsAmount = new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-            }).format(price / 100);
-
-            return (
-              <Link
-                key={_id}
-                href={`/products/${_id}`}
-                className="rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 bg-base-300">
-                <figure className="px-4 pt-4">
-                  <img
-                    src={image}
-                    alt={title}
-                    className="rounded-xl h-64 md:h-48 w-full object-cover"
-                  />
-                </figure>
-                <div className="card-body p-8! items-center text-center">
-                  <h2 className="text-[20px]/[28px] font-semibold capitalize tracking-wider">
-                    {title}
-                  </h2>
-                  <span className="font-medium">{dollarsAmount}</span>
-                </div>
-              </Link>
-            );
-          })}
-        </div> */}
         <Swiper
+          observer={true}
+          observeParents={true}
           modules={[Autoplay]}
-          autoplay={{ delay: 311000, disableOnInteraction: false }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
           loop={true}
-          slidesPerView={3}
-          spaceBetween={32}>
+          slidesPerView={1}
+          spaceBetween={0}
+          breakpoints={{
+            673: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+            1280: {
+              slidesPerView: 3,
+              spaceBetween: 32,
+            },
+          }}>
           {products.map((p) => {
             const { _id, title, category, description, price, image, reviews } =
               p;
@@ -176,7 +153,7 @@ function MainPage() {
                 <Link
                   href={`products/${_id}`}
                   className="p-6 flex flex-col gap-3">
-                  <div className="flex justify-between items-start gap-4">
+                  <div className="flex justify-between items-start gap-4 max-[792px]:flex-col-reverse">
                     <div>
                       <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">
                         {category}
@@ -189,7 +166,9 @@ function MainPage() {
                       {dollarsAmount}
                     </p>
                   </div>
-                  <p className="text-xs line-clamp-2">{description}</p>
+                  <p className="text-xs line-clamp-2">
+                    <span className="">{description}</span>
+                  </p>
                   <div className="flex items-center justify-between pt-3 mt-2">
                     <div className="flex items-center justify-center gap-1 text-amber-400">
                       {Array(5)
@@ -201,7 +180,7 @@ function MainPage() {
                         ({reviews.length} reviews)
                       </p>
                     </div>
-                    <button className="w-10 h-10 bg-base-300 rounded-xl flex items-center justify-center transition-all">
+                    <button className="w-10 h-10 bg-base-300 rounded-xl flex items-center justify-center transition-all max-[600px]:hidden">
                       <FaPlus />
                     </button>
                   </div>

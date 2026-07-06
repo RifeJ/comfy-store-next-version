@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaMoon } from "react-icons/fa6";
 import { IoSunny, IoMenu } from "react-icons/io5";
+import { FaRegStar } from "react-icons/fa";
+import { FiShoppingCart } from "react-icons/fi";
 import { TbSquareLetterXFilled } from "react-icons/tb";
 
 const navigationLinks = [
@@ -55,8 +57,8 @@ export default function NavLinks() {
   }, []);
 
   return (
-    <div className="bg-base-100 border-primary/20 border sticky top-0 z-999">
-      <div className="mx-auto! max-w-7xl px-8! py-5 flex justify-between items-center min-h-16 w-full">
+    <div className="bg-base-100 border-b border-primary/20 sticky top-0 z-999">
+      <div className="mx-auto max-w-7xl px-8! py-5 flex justify-between items-center min-h-16 w-full">
         <div className="flex justify-center items-center gap-2.5 max-lg:hidden">
           <div className="bg-primary hover:brightness-88 duration-300 ease-in border-[0.8px] border-solid border-primary rounded-xl size-10 text-center nav-links-logo cursor-pointer ">
             <Link href="/">
@@ -118,37 +120,28 @@ export default function NavLinks() {
           </ul>
         </div>
 
-        <div className="flex items-center">
-          <div>
-            <button
-              className="cursor-pointer p-2 hover:bg-base-300 rounded-full transition-colors"
-              aria-label="Toggle theme"
-              onClick={changeTheme}>
-              {isMounted &&
-                (theme === "layt" ? (
-                  <FaMoon size={20} />
-                ) : (
-                  <IoSunny size={20} />
-                ))}
-            </button>
-          </div>
+        <div className="flex items-center justify-center gap-2">
+          <button
+            className="flex items-center justify-center h-10 w-10 cursor-pointer hover:bg-base-300 rounded-full transition-colors"
+            aria-label="Toggle theme"
+            onClick={changeTheme}>
+            {isMounted &&
+              (theme === "layt" ? <FaMoon size={20} /> : <IoSunny size={20} />)}
+          </button>
 
-          <div className="ml-4!">
-            <Link
-              href="/cart"
-              aria-label="Shopping Cart"
-              className="hover:text-primary transition-colors">
-              <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth="0"
-                viewBox="0 0 16 16"
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-              </svg>
-            </Link>
-          </div>
+          <Link
+            href="/favorites"
+            className="flex items-center justify-center h-10 w-10 cursor-pointer hover:bg-base-300 rounded-full transition-colors text-current"
+            aria-label="Favorites">
+            <FaRegStar size={20} />
+          </Link>
+
+          <Link
+            href="/cart"
+            className="flex items-center justify-center h-10 w-10 cursor-pointer hover:bg-base-300 rounded-full transition-colors text-current"
+            aria-label="Shopping Cart">
+            <FiShoppingCart size={21} />
+          </Link>
         </div>
       </div>
 

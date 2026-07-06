@@ -57,7 +57,7 @@ export default function Register() {
 
       if (response.ok) {
         toast.success("Account created! Please login.");
-        setTimeout(() => navigate("/login"), 1000);
+        setTimeout(() => navigate.push("/login"), 1000);
       } else if (response.status === 429) {
         const unbannedAt = result.unbannedAt
           ? new Date(result.unbannedAt).toLocaleString()

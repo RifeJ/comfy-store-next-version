@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { FiShield } from "react-icons/fi";
 
 function Login() {
   const navigate = useRouter();
@@ -54,7 +55,26 @@ function Login() {
   };
 
   return (
-    <section className="h-screen grid place-items-center">
+    <section className="max-w-7xl w-full mx-auto h-screen grid grid-cols-2 justify-center items-center">
+      <div className="bg-card flex flex-col justify-center">
+        <div className="flex items-center gap-2.5 max-lg:hidden">
+          <div className="bg-primary hover:brightness-88 duration-300 ease-in border-[0.8px] border-solid border-primary rounded-xl size-10 text-center nav-links-logo cursor-pointer ">
+            <Link href="/">
+              <span className=" text-primary-content text-2xl font-black">
+                c
+              </span>
+            </Link>
+          </div>
+          <div>
+            <h1 className="font-bold text-sm">ComfyStore</h1>
+            <p className="text-[12px]">Design Studio</p>
+          </div>
+        </div>
+        <div className="flex items-center bg-primary-content p-2">
+          <FiShield />
+          Secure member access
+        </div>
+      </div>
       <form
         onSubmit={handleSubmit(handleLogin)}
         className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4">

@@ -37,8 +37,8 @@ export default function Header() {
 
   return (
     <div className="bg-primary text-neutral-content">
-      <div className="flex gap-x-5 justify-between items-center px-6   min-h-10 text-primary">
-        <p className="text-[12px]/[20px] flex justify-center items-center text-primary-content">
+      <div className="flex gap-x-5 justify-between max-md:justify-end items-center px-6 min-h-10 text-primary">
+        <p className="text-[12px]/[20px] flex justify-center items-center text-primary-content max-md:hidden">
           <WiStars size={30} fill="orange" />
           Premium Handcrafted Furniture • Free Worldwide Shipping
         </p>

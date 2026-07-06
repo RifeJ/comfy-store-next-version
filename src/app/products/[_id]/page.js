@@ -129,7 +129,7 @@ function ProductsDetail() {
   if (stock === 0 || stock < 1) setAvaible(false);
 
   return (
-    <section className="py-12 px-8 mx-auto max-w-7xl">
+    <section className="py-12 px-8 mx-auto max-w-7xl w-full">
       <div className="text-sm breadcrumbs mb-2 text-base-content font-medium">
         <ul className="flex items-center space-x-2">
           <li>
