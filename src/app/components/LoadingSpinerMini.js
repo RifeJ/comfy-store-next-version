@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function LoadingSpiner() {
+export default function LoadingSpinerMini() {
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="h-25 flex justify-center items-center">
       <span className="loading loading-ring loading-lg"></span>
     </div>
   );

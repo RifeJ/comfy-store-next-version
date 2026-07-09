@@ -103,7 +103,6 @@ export default function NavLinks() {
                 </li>
               );
             })}
-
             {isMounted && user && (
               <li>
                 <Link
@@ -114,6 +113,19 @@ export default function NavLinks() {
                       : "hover:bg-base-300/50"
                   }`}>
                   Checkout
+                </Link>
+              </li>
+            )}
+            {isMounted && user && (
+              <li>
+                <Link
+                  href="/order"
+                  className={`text-[14px]/[20px] py-2! px-4! rounded-lg transition-colors inline-block ${
+                    pathname === "/order"
+                      ? "bg-base-300 font-semibold active"
+                      : "hover:bg-base-300/50"
+                  }`}>
+                  Orders
                 </Link>
               </li>
             )}
@@ -169,6 +181,16 @@ export default function NavLinks() {
                   : ""
               }`}>
               Checkout
+            </Link>
+          )}
+          {isMounted && user && (
+            <Link
+              href="/order"
+              onClick={() => setIsMenuOpen(false)}
+              className={`block p-2 rounded-lg ${
+                pathname === "/order" ? "bg-base-300 font-semibold active" : ""
+              }`}>
+              Order
             </Link>
           )}
         </div>

@@ -14,6 +14,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { BsTruck } from "react-icons/bs";
 import { FaShieldHalved } from "react-icons/fa6";
 import { TbReceiptRefund } from "react-icons/tb";
+import ReviewCard from "../../components/ReviewCard";
 
 const formatPrice = (price) => {
   return new Intl.NumberFormat("en-US", {
@@ -317,6 +318,7 @@ function ProductsDetail() {
           </div>
         </div>
       </div>
+      <ReviewCard />
     </section>
   );
 }

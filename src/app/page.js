@@ -177,7 +177,7 @@ function MainPage() {
                           <FaRegStar key={index} />
                         ))}
                       <p className="text-xs text-primary ml-1 font-medium">
-                        ({reviews.length} reviews)
+                        ({reviews} reviews)
                       </p>
                     </div>
                     <button className="w-10 h-10 bg-base-300 rounded-xl flex items-center justify-center transition-all max-[600px]:hidden">

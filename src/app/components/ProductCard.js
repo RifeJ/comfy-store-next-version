@@ -5,7 +5,8 @@ import { FaRegStar, FaPlus, FaRegHeart, FaHeart } from "react-icons/fa";
 import { storeFavorite } from "../services/storeCart";
 
 const ProductCard = ({ product }) => {
-  const { _id, title, category, description, price, image, reviews } = product;
+  const { _id, title, category, description, price, image, numReviews } =
+    product;
 
   const isLiked = storeFavorite((state) =>
     state.favoriteItems.some((item) => {
@@ -64,7 +65,7 @@ const ProductCard = ({ product }) => {
                 <FaRegStar key={index} />
               ))}
             <p className="text-xs text-primary ml-1 font-medium">
-              ({reviews.length} reviews)
+              ({numReviews} reviews)
             </p>
           </div>
           <button className="w-10 h-10 bg-base-300 rounded-xl flex items-center justify-center transition-all cursor-pointer">

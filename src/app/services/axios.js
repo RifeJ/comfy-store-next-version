@@ -25,3 +25,8 @@ export const fetchFilterProducts = async (filter) => {
   });
   return res.data;
 };
+
+export const fetchReview = async (_id) => {
+  const res = await api.get(`/reviews/${_id}`);
+  return res.data || [];
+};
